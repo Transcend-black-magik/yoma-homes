@@ -1,0 +1,259 @@
+:root {
+  --primary-color: #002244;
+  --accent-color: #d4af37;
+  --gold: #d4af37;
+  --text-color: #002244;
+  --background-color: #ffffff;
+}
+
+/* ========== Base ========== */
+html, body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  background-color: var(--background-color);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  padding-top: 4.5rem; /* for fixed navbar offset */
+}
+
+/* ========== Base Navbar ========== */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  z-index: 1000;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar.scrolled {
+  padding: 0.4rem 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ========== Navbar Container ========== */
+.navbar-container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 1rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+/* ========== Logo Area ========== */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo-image {
+  height: 3.8rem;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+}
+
+.logo-image.shrink {
+  height: 3.2rem;
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 700;
+  font-family: 'Fjalla One', sans-serif;
+  color: var(--primary-color);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.rc-number {
+  font-size: 0.7rem;
+  color: #444;
+  margin-top: -4px;
+}
+
+/* ========== Desktop Navigation ========== */
+.nav-links-desktop {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links-desktop li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.05rem;
+  font-weight: 500;
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+  padding-bottom: 4px;
+  position: relative;
+}
+
+.nav-links-desktop li a:hover {
+  color: var(--accent-color);
+}
+
+.nav-links-desktop li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: var(--accent-color);
+}
+
+.nav-links-desktop li a.active {
+  color: var(--accent-color);
+}
+
+/* ========== Hamburger ========== */
+.menu-icon {
+  display: none;
+  flex-direction: column;
+  cursor: pointer;
+  gap: 5px;
+  padding: 0.5rem;
+  z-index: 1100;
+}
+
+.menu-icon .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* ========== Mobile Nav ========== */
+.nav-links-mobile {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #ffffff;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  max-height: 0;
+  opacity: 0;
+  visibility: hidden;
+  overflow: hidden;
+  transform: translateY(-10px);
+  transition: all 0.4s ease;
+}
+
+.nav-links-mobile.active {
+  max-height: 500px;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  padding: 1rem 0;
+}
+
+
+.nav-links-mobile li {
+  text-align: left;
+  padding: 1rem;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Apply staggered delays to each li using nth-child */
+.nav-links-mobile.active li:nth-child(1) {
+  transition-delay: 0.05s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-links-mobile.active li:nth-child(2) {
+  transition-delay: 0.1s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-links-mobile.active li:nth-child(3) {
+  transition-delay: 0.15s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.nav-links-mobile.active li:nth-child(4) {
+  transition-delay: 0.2s;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.nav-links-mobile.active li {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.nav-links-mobile li a {
+  text-decoration: none;
+  color: var(--text-color);
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: block;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.nav-links-mobile li a:hover {
+  background-color: #f5f5f5;
+  color: var(--accent-color);
+}
+
+/* ========== Responsive Fixes ========== */
+@media (max-width: 768px) {
+  .menu-icon {
+    display: flex;
+  }
+
+  .nav-links-desktop {
+    display: none;
+  }
+
+  .navbar-container {
+    padding: 0 1rem;
+  }
+
+  .logo-container {
+    gap: 0.4rem;
+  }
+
+  .logo {
+    font-size: 1.4rem;
+  }
+
+  .rc-number {
+    font-size: 0.65rem;
+  }
+}
+
+@media (min-width: 769px) {
+  .nav-links-mobile {
+    display: none;
+  }
+}

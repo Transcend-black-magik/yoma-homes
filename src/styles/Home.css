@@ -1,0 +1,554 @@
+:root {
+  --gold: #d4af37;
+  --blue: #002244;
+  --white: #ffffff;
+  --light: #f9f9f9;
+}
+
+/* ===== Hero Section ===== */
+.hero-section {
+  position: relative;
+  min-height: 80vh;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  padding: 6rem 1.5rem 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: left;
+  color: var(--white);
+  overflow: hidden;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 0;
+}
+
+.hero-container {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* ===== Headline & Text ===== */
+.hero-container h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--white);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.hero-container h1 .gold {
+  color: var(--gold);
+}
+
+.hero-container p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+  color: #e0e0e0;
+  text-align: center;
+}
+
+/* ===== Listing Type Toggle ===== */
+.listing-toggle {
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  margin-bottom: 0;
+  flex-wrap: wrap;
+}
+
+.listing-toggle button {
+  background: transparent;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  font-weight: 600;
+  padding: 0.5rem 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 0;
+  display: flex;
+  align-items: center;
+  font-size: 0.95rem;
+}
+
+.listing-toggle button.active {
+  background-color: var(--gold);
+  color: var(--blue);
+}
+
+.listing-toggle button:hover {
+  background-color: rgba(212, 175, 55, 0.15);
+}
+
+/* ===== Search Controls Container ===== */
+.search-controls.joined-search-controls {
+  background: var(--white);
+  padding: 1rem;
+  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 1100px;
+  width: 100%;
+}
+
+/* ===== Search Bar ===== */
+.hero-search-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.search-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 180px;
+}
+
+.search-field label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  color: var(--blue);
+}
+
+.search-field select,
+.search-field input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.search-field select:focus,
+.search-field input:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+  transform: scale(1.02);
+}
+
+/* ===== Keyword Field Hide on Mobile ===== */
+.search-field.keyword-field {
+  display: flex;
+}
+
+@media (max-width: 768px) {
+  .search-field.keyword-field {
+    display: none !important;
+  }
+}
+
+/* ===== FIX: Add margin between keyword field and advanced toggle ===== */
+@media (min-width: 769px) {
+  .search-field.keyword-field {
+    margin-right: 1.5rem;
+  }
+}
+
+/* ===== Search Button ===== */
+.hero-search-bar button {
+  background-color: var(--gold);
+  color: var(--blue);
+  font-weight: bold;
+  padding: 0.85rem 2.4rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: fit-content;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.hero-search-bar button:hover {
+  background-color: #caa22d;
+  transform: scale(1.05);
+}
+
+/* ===== Advanced Toggle Button ===== */
+.advanced-toggle {
+  background: none;
+  border: none;
+  color: var(--gold);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.advanced-toggle:hover {
+  color: #caa22d;
+  text-decoration: underline;
+}
+
+.advanced-toggle.inline {
+  align-self: flex-end;
+}
+
+.advanced-toggle.mobile {
+  width: 100%;
+  justify-content: flex-start;
+  display: none;
+}
+
+/* ===== Advanced Filters Reveal ===== */
+.advanced-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===== Price Range ===== */
+.price-range-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-width: 220px;
+}
+
+.price-range-wrapper label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue);
+  margin-bottom: 0.5rem;
+}
+
+.price-range-wrapper input[type="range"] {
+  width: 100%;
+  appearance: none;
+  height: 6px;
+  background: #ddd;
+  border-radius: 3px;
+  outline: none;
+}
+
+.price-range-wrapper input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.price-range-wrapper input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: var(--gold);
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* ===== Price Display ===== */
+.price-display {
+  font-size: 0.85rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+/* ===== Mobile Adjustments ===== */
+@media (max-width: 768px) {
+  .hero-container h1 {
+    font-size: 2.2rem;
+    text-align: center;
+  }
+
+  .hero-container p {
+    font-size: 1.05rem;
+    text-align: center;
+  }
+
+  .search-controls.joined-search-controls {
+    padding: 1rem 0.5rem;
+    align-items: stretch;
+  }
+
+  .hero-search-bar {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .search-field {
+    width: 100%;
+  }
+
+  .hero-search-bar button {
+    width: 100%;
+  }
+
+  .advanced-toggle.inline {
+    display: none;
+  }
+
+  .advanced-toggle.mobile {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+
+  .advanced-filters {
+    flex-direction: column;
+  }
+
+  .price-range-wrapper {
+    width: 100%;
+  }
+
+  .listing-toggle {
+    justify-content: center;
+  }
+}
+
+/* ===== Featured Section ===== */
+.featured-section {
+  padding: 40px 10%;
+  background: #f8f8f8;
+}
+
+/* Header with flex */
+.featured-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.featured-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  position: relative;
+}
+
+.featured-title::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--gold);
+}
+
+/* Filter toggle */
+.filter-toggle {
+  display: flex;
+  gap: 8px;
+}
+
+.filter-btn {
+  padding: 12px 28px;
+  border: 1px solid #ccc;
+  background: #fff;
+  cursor: pointer;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+.filter-btn.active {
+  background: var(--gold);
+  color: #fff;
+  border-color: var(--gold);
+}
+
+/* ===== Property Grid ===== */
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+}
+
+/* ===== Property Cards with animation support ===== */
+.property-card {
+  position: relative;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: #fff;
+  will-change: transform, opacity;
+  cursor: pointer;
+  /* subtle shadow */
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.85)
+  );
+  z-index: 1;
+}
+
+.property-tags {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.property-status,
+.feature-tag {
+  padding: 4px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-radius: 3px;
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.property-status.sale,
+.feature-tag.sale {
+  background: #d62828;
+}
+
+.property-status.rent,
+.feature-tag.rent {
+  background: #003049;
+}
+
+.property-status.short\ let,
+.feature-tag.short\ let {
+  background: #0c8f7f;
+}
+
+.property-info {
+  position: relative;
+  z-index: 2;
+  padding: 20px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.8) 40%,
+    transparent 100%
+  );
+  border-radius: 0 0 8px 8px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.separator {
+  width: 40px;
+  height: 2px;
+  background: var(--gold);
+  margin: 6px 0 10px;
+}
+
+.property-description {
+  margin-bottom: 0.5rem;
+  color: #fff;
+  font-weight: 600;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.description-separator {
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  margin: 0.5rem 0 1rem;
+}
+
+.property-details {
+  display: flex;
+  gap: 16px;
+  font-size: 0.9rem;
+  color: #fff;
+}
+
+.property-details span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.property-details svg {
+  font-size: 1rem;
+  color: var(--gold); /* luxury gold */
+}
+
+/* ===== See All Properties Button ===== */
+.see-all-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.see-all-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--gold);
+  color: var(--white);
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.see-all-btn:hover {
+  background-color: #b8972f;
+}
+
+/* Responsive tweaks for featured section */
+@media (max-width: 768px) {
+  .featured-section {
+    padding: 30px 5%;
+  }
+  .featured-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
