@@ -147,6 +147,7 @@ const Home = () => {
     navigate(`/properties?${query}`);
   };
 
+
   const filteredProperties =
     filter === "All"
       ? properties
@@ -456,6 +457,89 @@ const Home = () => {
           </button>
         </div>
       </section>
+      {/* ===== For Sale Properties Section ===== */}
+<section className="featured-section">
+  <div className="featured-header">
+    <h2 className="featured-title">Properties For Sale</h2>
+    <button
+      className="see-all-btn"
+      onClick={() => navigate("/properties")}
+      style={{
+        padding: "10px 20px",
+        fontSize: "1rem",
+        cursor: "pointer",
+        borderRadius: "6px",
+        border: "none",
+        backgroundColor: "#d4af37",
+        color: "#fff",
+        fontWeight: "600",
+        transition: "background-color 0.3s ease",
+      }}
+      onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#b8972f")}
+      onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#d4af37")}
+    >
+      View All Properties
+    </button>
+  </div>
+
+  <motion.div
+    className="featured-grid"
+    variants={containerVariants}
+    initial="hidden"
+    animate="visible"
+    exit="hidden"
+    layout
+  >
+    <AnimatePresence>
+      {properties
+        .filter((property) => property.type === "Sale")
+        .map((property) => (
+          <motion.div
+            key={property.id}
+            className="property-card"
+            style={{ backgroundImage: `url(${property.image})` }}
+            variants={cardVariants}
+            exit="exit"
+            layout
+          >
+            <div className="overlay"></div>
+
+            <div className="property-tags">
+              {property.featured && (
+                <span
+                  className={`feature-tag ${property.type.toLowerCase()}`}
+                >
+                  Featured
+                </span>
+              )}
+              <span
+                className={`property-status ${property.type.toLowerCase()}`}
+              >
+                {property.type}
+              </span>
+            </div>
+
+            <div className="property-info">
+              <h3 className="property-price">{property.price}</h3>
+              <p className="property-description">{property.description}</p>
+              <hr className="description-separator" />
+              <div className="property-details">
+                <span>
+                  <FaBed /> {property.bedrooms} Beds
+                </span>
+                <span>
+                  <FaBath /> {property.bathrooms} Baths
+                </span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
+    </AnimatePresence>
+  </motion.div>
+</section>
+
+      
+      
     </>
   );
 };
