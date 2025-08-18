@@ -1,0 +1,179 @@
+.team-container {
+  font-family: 'Poppins', sans-serif;
+  color: #222;
+  background: #fff;
+}
+
+/* Banner Section */
+.banner-section {
+  position: relative;
+  height: 280px;
+  background-image: url('../Assets/Hero-Image.webp');
+  background-position: center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.banner-overlay {
+  background-color: rgba(0,0,0,0.6);
+  padding: 40px 30px;
+  border-radius: 12px;
+  text-align: center;
+  color: #fff;
+  max-width: 600px;
+}
+
+.banner-overlay h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+  margin-bottom: 12px;
+  letter-spacing: 2px;
+}
+
+.banner-overlay p {
+  font-weight: 300;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+}
+
+/* Meet the Team Section */
+.meet-team-section {
+  max-width: 1100px;
+  margin: 50px auto 80px;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.meet-team-section h2 {
+  font-size: 2.6rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 40px;
+}
+
+/* Slider wrapper for arrows and overflow */
+.slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* The slider container */
+.team-slider {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 30px;
+  padding-bottom: 10px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+}
+
+/* Hide scrollbar */
+.team-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Each team card */
+.team-card {
+  min-width: 250px;
+  flex-shrink: 0;
+  background: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgb(0 0 0 / 0.1);
+  overflow: hidden;
+  scroll-snap-align: start;
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+}
+
+.image-wrapper {
+  height: 260px;
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.team-card:hover .image-wrapper img {
+  transform: scale(1.05);
+}
+
+.team-card h3 {
+  margin: 18px 0 6px;
+  font-weight: 600;
+  color: #003366;
+  font-size: 1.15rem;
+  letter-spacing: 0.8px;
+}
+
+.team-card p {
+  margin-bottom: 18px;
+  font-weight: 400;
+  font-size: 0.95rem;
+  color: #555;
+  letter-spacing: 0.6px;
+}
+
+/* Arrows */
+.arrow {
+  background-color: #003366;
+  border: none;
+  color: white;
+  font-size: 2.2rem;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 50%;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  z-index: 10;
+}
+
+.arrow:hover {
+  background-color: #002244;
+}
+
+.left-arrow {
+  margin-right: 10px;
+}
+
+.right-arrow {
+  margin-left: 10px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .banner-section {
+    height: 180px;
+  }
+
+  .banner-overlay h1 {
+    font-size: 1.9rem;
+  }
+
+  .banner-overlay p {
+    font-size: 1rem;
+  }
+
+  .meet-team-section h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  /* Hide arrows on small devices for simpler UX */
+  .arrow {
+    display: none;
+  }
+}

@@ -63,6 +63,7 @@
   gap: 0.5rem;
   margin-bottom: 0;
   flex-wrap: wrap;
+  align-items: center;
 }
 
 .listing-toggle button {
@@ -72,7 +73,7 @@
   font-weight: 600;
   padding: 0.5rem 1.2rem;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.25s ease;
   border-radius: 0;
   display: flex;
   align-items: center;
@@ -85,7 +86,7 @@
 }
 
 .listing-toggle button:hover {
-  background-color: rgba(212, 175, 55, 0.15);
+  background-color: rgba(212, 175, 55, 0.12);
 }
 
 /* ===== Search Controls Container ===== */
@@ -98,6 +99,8 @@
   gap: 1rem;
   max-width: 1100px;
   width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
 }
 
 /* ===== Search Bar ===== */
@@ -130,15 +133,16 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  background: #fff;
 }
 
 .search-field select:focus,
 .search-field input:focus {
   outline: none;
   border-color: var(--gold);
-  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
-  transform: scale(1.02);
+  box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.12);
+  transform: translateZ(0); /* avoid expensive transform on focus */
 }
 
 /* ===== Keyword Field Hide on Mobile ===== */
@@ -152,7 +156,7 @@
   }
 }
 
-/* ===== FIX: Add margin between keyword field and advanced toggle ===== */
+/* ===== FIXED: Add margin between keyword field and advanced toggle for wide screens ===== */
 @media (min-width: 769px) {
   .search-field.keyword-field {
     margin-right: 1.5rem;
@@ -160,7 +164,7 @@
 }
 
 /* ===== Search Button ===== */
-.hero-search-bar button {
+.hero-search-bar button.btn-submit {
   background-color: var(--gold);
   color: var(--blue);
   font-weight: bold;
@@ -169,12 +173,12 @@
   border-radius: 4px;
   cursor: pointer;
   height: fit-content;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.12s ease;
 }
 
-.hero-search-bar button:hover {
+.hero-search-bar button.btn-submit:hover {
   background-color: #caa22d;
-  transform: scale(1.05);
+  transform: translateY(-2px);
 }
 
 /* ===== Advanced Toggle Button ===== */
@@ -185,7 +189,7 @@
   font-weight: 600;
   cursor: pointer;
   font-size: 0.95rem;
-  transition: color 0.3s ease;
+  transition: color 0.2s ease;
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -212,13 +216,13 @@
   flex-wrap: wrap;
   gap: 1rem;
   margin-top: 1rem;
-  animation: fadeIn 0.4s ease-in-out;
+  animation: fadeIn 0.34s ease-in-out;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
@@ -257,6 +261,7 @@
   background: var(--gold);
   border-radius: 50%;
   cursor: pointer;
+  border: none;
 }
 
 .price-range-wrapper input[type="range"]::-moz-range-thumb {
@@ -265,6 +270,7 @@
   background: var(--gold);
   border-radius: 50%;
   cursor: pointer;
+  border: none;
 }
 
 /* ===== Price Display ===== */
@@ -301,7 +307,7 @@
     width: 100%;
   }
 
-  .hero-search-bar button {
+  .hero-search-bar button.btn-submit {
     width: 100%;
   }
 
@@ -366,13 +372,13 @@
 }
 
 .filter-btn {
-  padding: 12px 28px;
+  padding: 12px 20px;
   border: 1px solid #ccc;
   background: #fff;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
   font-size: 0.9rem;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
 }
 
 .filter-btn:hover {
@@ -394,7 +400,7 @@
   gap: 20px;
 }
 
-/* ===== Property Cards with animation support ===== */
+/* ===== Property Cards ===== */
 .property-card {
   position: relative;
   height: 320px;
@@ -408,24 +414,19 @@
   color: #fff;
   will-change: transform, opacity;
   cursor: pointer;
-  /* subtle shadow */
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-  transition: transform 0.3s ease;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.18);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
 }
 
 .property-card:hover {
-  transform: translateY(-6px) scale(1.03);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.32);
 }
 
 .overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0.3),
-    rgba(0, 0, 0, 0.85)
-  );
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.22), rgba(0, 0, 0, 0.85));
   z-index: 1;
 }
 
@@ -446,8 +447,10 @@
   border-radius: 3px;
   text-transform: uppercase;
   user-select: none;
+  color: #fff;
 }
 
+/* Type colors (use safe hyphenated classes) */
 .property-status.sale,
 .feature-tag.sale {
   background: #d62828;
@@ -458,24 +461,22 @@
   background: #003049;
 }
 
-.property-status.short\ let,
-.feature-tag.short\ let {
+.property-status.short-let,
+.feature-tag.short-let {
   background: #0c8f7f;
 }
 
+/* property info panel */
 .property-info {
   position: relative;
   z-index: 2;
   padding: 20px;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.8) 40%,
-    transparent 100%
-  );
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 40%, transparent 100%);
   border-radius: 0 0 8px 8px;
 }
 
-.price {
+/* corrected CSS selector for price */
+.property-price {
   font-size: 1.3rem;
   font-weight: 700;
   margin: 0;
@@ -516,7 +517,7 @@
 
 .property-details svg {
   font-size: 1rem;
-  color: var(--gold); /* luxury gold */
+  color: var(--gold);
 }
 
 /* ===== See All Properties Button ===== */
@@ -534,7 +535,7 @@
   background-color: var(--gold);
   color: var(--white);
   font-weight: 600;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.2s ease;
 }
 
 .see-all-btn:hover {
@@ -550,5 +551,240 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
+  }
+}
+
+/* ===== Top Rentals Horizontal Scroll Section ===== */
+.top-rentals-section {
+  padding: 40px 10%;
+  background: #f8f8f8;
+}
+
+.top-rentals-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.top-rentals-section h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #222;
+  position: relative;
+}
+
+.top-rentals-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background: var(--gold);
+}
+
+.top-rentals-section .see-all-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 6px;
+  border: none;
+  background-color: var(--gold);
+  color: var(--white);
+  font-weight: 600;
+  transition: background-color 0.2s ease;
+}
+
+.top-rentals-section .see-all-btn:hover {
+  background-color: #b8972f;
+}
+
+/* Horizontal scroll wrapper */
+.horizontal-scroll-wrapper {
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: 12px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  outline: none;
+}
+
+.horizontal-scroll-wrapper:focus {
+  outline: 2px solid var(--gold);
+  outline-offset: 4px;
+}
+
+.horizontal-scroll-container {
+  display: flex;
+  gap: 20px;
+  user-select: none;
+}
+
+/* Horizontal scroll property cards */
+.top-rentals-section .property-card {
+  min-width: 300px;
+  max-width: 320px;
+  flex: 0 0 auto;
+  height: 320px;
+}
+
+/* ===== Shortlets Grid Section ===== */
+.shortlets-section {
+  padding: 40px 10%;
+  background: #f8f8f8;
+}
+
+.shortlets-section .featured-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 20px;
+}
+
+/* Responsive for new sections */
+@media (max-width: 768px) {
+  .top-rentals-section,
+  .shortlets-section {
+    padding: 30px 5%;
+  }
+  .top-rentals-section .section-header,
+  .shortlets-section .featured-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+  .top-rentals-section .property-card {
+    min-width: 260px;
+    max-width: 280px;
+    height: 280px;
+  }
+}
+
+/* ===== Stats Section ===== */
+.stats-section {
+  background-color: var(--blue);
+  padding: 60px 20px;
+  color: var(--white);
+  text-align: center;
+}
+
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.stat-item h3,
+.animated-counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.stat-item p {
+  font-size: 1rem;
+  opacity: 0.95;
+}
+
+/* Blog Section */
+.blog-section {
+  padding: 5rem 15%;
+  background: #f8f9fa;
+}
+
+.blog-section-title {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--blue);
+  text-align: center;
+  font-family: "Poppins", sans-serif;
+  position: relative;
+}
+
+.blog-section-title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: var(--gold);
+  margin: 10px auto 0;
+  border-radius: 2px;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.blog-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  transition: transform 0.2s ease;
+}
+
+.blog-card:hover {
+  transform: translateY(-6px);
+}
+
+.blog-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-content {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.blog-content h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.blog-excerpt {
+  font-size: 0.95rem;
+  color: #555;
+  flex-grow: 1;
+  margin-bottom: 10px;
+}
+
+.learn-more {
+  font-size: 0.9rem;
+  color: var(--gold);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.learn-more:hover {
+  color: #b8962b;
+  text-decoration: underline;
+}
+
+/* small screens adjustments */
+@media (max-width: 480px) {
+  .blog-section {
+    padding: 3rem 6%;
+  }
+  .hero-container h1 {
+    font-size: 1.8rem;
+  }
+  .hero-section {
+    padding: 4rem 1rem 3rem;
   }
 }
