@@ -1,37 +1,35 @@
-/* ========================
-   src/components/ListingCard.jsx
-   (Card component for each listing)
-   ======================== */
+import React, { useState } from "react";
+import "../styles/ListingCard.css";
 
-import React from 'react';
+export default function ListingCard({ data, compact = false }) {
+  const [mainImage, setMainImage] = useState(data.image);
 
-export default function ListingCard({data, compact}){
   return (
-    <article className={"listing-card " + (compact? 'compact':'') }>
-      <div className="thumb" style={{backgroundImage:`url(${data.image})`}}>
-        <span className={`badge ${data.status.replace(/\s+/g,'-')}`}>{data.status}</span>
-      </div>
+    <div className={`listing-card ${compact ? "compact" : ""}`}>
+      <img src={mainImage} alt={data.title} className="listing-main-image" />
 
-      <div className="card-body">
-        <h4 className="title">{data.title}</h4>
-        <div className="meta">{data.location} • ₦{numberWithCommas(data.price)}</div>
-        {!compact && <p className="desc">{data.description}</p>}
-
-        <div className="specs">
-          <span>{data.beds} Br</span>
-          <span>{data.baths} Ba</span>
-          <span>{data.size} sqft</span>
+      {!compact && data.gallery && data.gallery.length > 0 && (
+        <div className="gallery-thumbnails">
+          {data.gallery.map((img, idx) => (
+            <img
+              key={idx}
+              src={img}
+              alt={`${data.title} gallery ${idx + 1}`}
+              onClick={() => setMainImage(img)}
+            />
+          ))}
         </div>
+      )}
 
-        {!compact && <div className="actions">
-          <button className="btn primary">View details</button>
-          <button className="btn">Contact</button>
-        </div>}
+      <div className="listing-info">
+        <h3>{data.title}</h3>
+        <p>{data.description}</p>
+        <p>
+          <strong>{data.priceDisplay}</strong> — {data.bedrooms} Beds / {data.bathrooms} Baths
+        </p>
+        <p>{data.location}</p>
+        <p>Type: {data.type || "N/A"} | Status: {data.status || "N/A"}</p>
       </div>
-    </article>
+    </div>
   );
-}
-
-function numberWithCommas(x){
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }

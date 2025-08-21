@@ -38,7 +38,7 @@ const Header = () => {
       const { offsetLeft, offsetWidth } = currentLink;
       setIndicatorProps({ left: offsetLeft, width: offsetWidth });
     }
-  }, [location.pathname, navRefs.current]);
+  }, [location.pathname]);
 
   return (
     <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
