@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ListingCard({ data, compact = false }) {
-  const [mainImage, setMainImage] = useState(data.image);
+  const [mainImage, setMainImage] = useState(data.imageUrl);
   const navigate = useNavigate();
 
   const handleViewDetails = () => {

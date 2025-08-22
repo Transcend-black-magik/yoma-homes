@@ -1,18 +1,26 @@
 // src/lib/sanity.js
-import sanityClient from "@sanity/client";
+import { createClient } from "@sanity/client";
 import imageUrlBuilder from "@sanity/image-url";
 
-export const client = sanityClient({
-  projectId: process.env.REACT_APP_SANITY_PROJECT_ID,
-  dataset: process.env.REACT_APP_SANITY_DATASET,
-  apiVersion: "2023-01-01", // keep this stable
-  useCdn: true,
-  token: process.env.REACT_APP_SANITY_API_TOKEN, // optional, only if you need write access
+// Configure your Sanity client
+const client = createClient({
+  projectId: "ifcs0hka", // <-- replace with your Sanity project ID
+  dataset: "production",        // <-- or your dataset name
+  useCdn: true, 
+  token: "skFtxx2xOaMz7zKsQfIsDjCngEUtjfElmgS8woigftLcSVixEzr9S33JLkOsLcTjM9nLgWDJKoEkmqUFWjHp0U8oMux23OfFx7y6xW4kbR8yHtzV6LpRSyWZSCyqnG7aVrfH3Vpk2NpxFgkmFuPFYZD0b6RVueKFEqWu7iIfnVnKjOmL2xKV",                // `false` if you want fresh data
+  apiVersion: "2025-08-21",     // use today's date in YYYY-MM-DD format
 });
 
-// image URL builder
+// Image URL builder
 const builder = imageUrlBuilder(client);
-export const urlFor = (source) => builder.image(source);
+
+export function urlFor(source) {
+  return builder.image(source);
+}
+
+// Default export for the client
+export default client;
+
 
 
 
