@@ -1,5 +1,84 @@
+// src/lib/listingApi.js
+import { client, urlFor } from "./sanity";
+
+// Fetch all properties
 export async function fetchAllListings() {
-  const res = await fetch("http://localhost:5000/api/listings");
-  if (!res.ok) throw new Error("Failed to fetch listings");
-  return res.json();
+  const query = `*[_type == "property"] | order(_createdAt desc) {
+    _id,
+    title,
+    description,
+    price,
+    location,
+    bedrooms,
+    bathrooms,
+    featured,
+    type,
+    status,
+    "imageUrl": image.asset->_ref,
+    gallery
+  }`;
+  const listings = await client.fetch(query);
+
+  // resolve image urls
+  return listings.map(item => ({
+    ...item,
+    imageUrl: item.imageUrl ? urlFor(item.imageUrl).url() : null,
+    gallery: item.gallery
+      ? item.gallery.map(img => urlFor(img).url())
+      : []
+  }));
+}
+
+// Fetch featured properties
+export async function fetchFeaturedListings() {
+  const query = `*[_type == "property" && featured == true] | order(_createdAt desc) {
+    _id,
+    title,
+    description,
+    price,
+    location,
+    bedrooms,
+    bathrooms,
+    featured,
+    type,
+    status,
+    "imageUrl": image.asset->_ref,
+    gallery
+  }`;
+  const listings = await client.fetch(query);
+
+  return listings.map(item => ({
+    ...item,
+    imageUrl: item.imageUrl ? urlFor(item.imageUrl).url() : null,
+    gallery: item.gallery
+      ? item.gallery.map(img => urlFor(img).url())
+      : []
+  }));
+}
+
+// Fetch properties by type (sale, rent, shortlet)
+export async function fetchListingsByType(type) {
+  const query = `*[_type == "property" && type == $type] | order(_createdAt desc) {
+    _id,
+    title,
+    description,
+    price,
+    location,
+    bedrooms,
+    bathrooms,
+    featured,
+    type,
+    status,
+    "imageUrl": image.asset->_ref,
+    gallery
+  }`;
+  const listings = await client.fetch(query, { type });
+
+  return listings.map(item => ({
+    ...item,
+    imageUrl: item.imageUrl ? urlFor(item.imageUrl).url() : null,
+    gallery: item.gallery
+      ? item.gallery.map(img => urlFor(img).url())
+      : []
+  }));
 }

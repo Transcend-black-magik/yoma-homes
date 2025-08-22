@@ -1,80 +1,296 @@
-
 /* ========================
    src/styles/Listings.css
-   (Basic styles to mirror comfortpropertiesltd.com aesthetic)
+   (Enhanced styles for interactive Listing Cards)
    ======================== */
 
-:root{
+:root {
   --accent: #d4af37;
   --bg: #f8f8f9;
   --muted: #6b6b6b;
   --card: #ffffff;
+  --transition: all 0.3s ease;
 }
 
-*{box-sizing:border-box}
-body{font-family:Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0; background:var(--bg); color:#222}
-.container{max-width:1100px; margin:0 auto; padding:24px}
-.site-header{background:#fff; border-bottom:1px solid #eee}
-.header-inner{display:flex; align-items:center; justify-content:space-between}
-.logo{font-weight:700; color:#111; text-decoration:none}
-.main-nav a{margin-left:18px; color:#444; text-decoration:none}
-.main-nav .active{color:var(--accent)}
-.hero{padding:60px 24px; text-align:center}
-
-.listings-page .search-panel{background:linear-gradient(180deg, #fff, #fff); padding:20px; border-radius:8px; box-shadow:0 6px 20px rgba(16,24,40,0.06); margin-bottom:20px}
-.listings-page .search-panel h2{margin:0 0 12px 0}
-.filters{display:flex; flex-wrap:wrap; gap:12px}
-.filters input[type="text"], .filters select, .filters .price-input{padding:10px 12px; border:1px solid #e6e6e6; border-radius:8px; min-width:160px}
-.filters .price-input{min-width:130px}
-.view-toggle{margin-left:auto; display:flex; align-items:center}
-.view-toggle button{padding:8px 12px; border-radius:8px; border:1px solid #eee; background:#fff; margin-left:8px}
-.view-toggle button.active{border-color:var(--accent); background:linear-gradient(90deg,#fff, #fff)}
-
-.featured{margin:28px 0}
-.featured-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:12px}
-
-.results h3{margin-bottom:12px}
-.results-grid.grid-view{display:grid; grid-template-columns:repeat(3,1fr); gap:18px}
-.results-grid.list-view{display:flex; flex-direction:column; gap:12px}
-
-.listing-card{background:var(--card); border-radius:10px; overflow:hidden; display:flex; flex-direction:column; box-shadow:0 6px 18px rgba(16,24,40,0.06)}
-.listing-card .thumb{height:160px; background-position:center; background-size:cover; position:relative}
-.listing-card .badge{position:absolute; left:12px; top:12px; background:var(--accent); color:#fff; padding:6px 10px; border-radius:6px; font-weight:600; text-transform:capitalize}
-.listing-card .badge.for-sale{background:#27ae60}
-.listing-card .badge.shortlet{background:#6c5ce7}
-
-.card-body{padding:12px 16px}
-.title{margin:6px 0 4px 0}
-.meta{color:var(--muted); font-size:14px}
-.desc{margin:8px 0 12px 0; color:#444}
-.specs{display:flex; gap:12px; color:var(--muted); font-weight:600}
-.actions{display:flex; gap:8px; margin-top:12px}
-.btn{padding:8px 12px; border-radius:8px; border:1px solid #eee; background:#fff}
-.btn.primary{background:var(--accent); color:#fff; border:none}
-
-.pagination{display:flex; gap:8px; justify-content:center; margin-top:18px}
-.pagination button{padding:8px 10px; border-radius:6px; border:1px solid #eee; background:#fff}
-.pagination button.active{background:var(--accent); color:#fff}
-
-.site-footer{padding:28px 0; text-align:center; color:var(--muted)}
-
-/* Responsive */
-@media (max-width: 900px){
-  .featured-grid{grid-template-columns:repeat(2,1fr)}
-  .results-grid.grid-view{grid-template-columns:repeat(2,1fr)}
+* {
+  box-sizing: border-box;
 }
-@media (max-width: 600px){
-  .filters{gap:8px}
-  .featured-grid{grid-template-columns:repeat(1,1fr)}
-  .results-grid.grid-view{grid-template-columns:repeat(1,1fr)}
-  .filters input, .filters select{min-width:100%}
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial;
+  margin: 0;
+  background: var(--bg);
+  color: #222;
+}
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px;
+}
+.site-header {
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  font-weight: 700;
+  color: #111;
+  text-decoration: none;
+}
+.main-nav a {
+  margin-left: 18px;
+  color: #444;
+  text-decoration: none;
+}
+.main-nav .active {
+  color: var(--accent);
+}
+.hero {
+  padding: 60px 24px;
+  text-align: center;
 }
 
+.listings-page .search-panel {
+  background: linear-gradient(180deg, #fff, #fff);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 6px 20px rgba(16, 24, 40, 0.06);
+  margin-bottom: 20px;
+}
+.listings-page .search-panel h2 {
+  margin: 0 0 12px 0;
+}
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.filters input[type="text"],
+.filters select,
+.filters .price-input {
+  padding: 10px 12px;
+  border: 1px solid #e6e6e6;
+  border-radius: 8px;
+  min-width: 160px;
+}
+.filters .price-input {
+  min-width: 130px;
+}
+.view-toggle {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+}
+.view-toggle button {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #eee;
+  background: #fff;
+  margin-left: 8px;
+  transition: var(--transition);
+}
+.view-toggle button.active {
+  border-color: var(--accent);
+  background: linear-gradient(90deg, #fff, #fff);
+}
+
+.featured {
+  margin: 28px 0;
+}
+.featured-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.results h3 {
+  margin-bottom: 12px;
+}
+.results-grid.grid-view {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+.results-grid.list-view {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
 /* ========================
-   Usage notes
-   - Copy files into a React app created with CRA or Vite
-   - Files: src/App.jsx, src/pages/Listings.jsx, src/components/ListingCard.jsx, src/data/listings.js, src/styles/Listings.css
-   - Install react-router-dom: npm i react-router-dom
-   - Run: npm start
+   Listing Card
    ======================== */
+.listing-card {
+  background: var(--card);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 6px 18px rgba(16, 24, 40, 0.06);
+  transition: var(--transition);
+}
+.listing-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 24px rgba(16, 24, 40, 0.1);
+}
+
+.listing-card .thumb {
+  height: 220px; /* increased size */
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  transition: var(--transition);
+}
+.listing-card:hover .thumb {
+  transform: scale(1.02);
+}
+
+.listing-card .badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  background: var(--accent);
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-weight: 600;
+  text-transform: capitalize;
+  font-size: 13px;
+}
+.listing-card .badge.for-sale {
+  background: #27ae60;
+}
+.listing-card .badge.shortlet {
+  background: #6c5ce7;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  overflow-x: auto;
+}
+.gallery-thumbnails img {
+  width: 60px; /* larger thumbs */
+  height: 60px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 2px solid transparent;
+  transition: var(--transition);
+  cursor: pointer;
+}
+.gallery-thumbnails img:hover {
+  border-color: var(--accent);
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 14px 16px 18px;
+}
+.title {
+  margin: 6px 0 4px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+.meta {
+  color: var(--muted);
+  font-size: 14px;
+}
+.desc {
+  margin: 8px 0 12px 0;
+  color: #444;
+  font-size: 14px;
+  line-height: 1.4;
+}
+.specs {
+  display: flex;
+  gap: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+.btn {
+  padding: 9px 14px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn:hover {
+  background: #f1f1f1;
+}
+.btn.primary {
+  background: var(--accent);
+  color: #fff;
+  border: none;
+}
+.btn.primary:hover {
+  background: #b8962d;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 18px;
+}
+.pagination button {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  background: #fff;
+  transition: var(--transition);
+}
+.pagination button.active {
+  background: var(--accent);
+  color: #fff;
+}
+.pagination button:hover {
+  background: #f1f1f1;
+}
+
+.site-footer {
+  padding: 28px 0;
+  text-align: center;
+  color: var(--muted);
+}
+
+/* ========================
+   Responsive
+   ======================== */
+@media (max-width: 900px) {
+  .featured-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .results-grid.grid-view {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .filters {
+    gap: 8px;
+  }
+  .featured-grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .results-grid.grid-view {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .filters input,
+  .filters select {
+    min-width: 100%;
+  }
+}
