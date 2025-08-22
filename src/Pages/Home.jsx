@@ -83,30 +83,33 @@ const Home = () => {
 
   // ✅ Fetch from backend
   useEffect(() => {
-  let mounted = true;
-  async function loadData() {
-    try {
-      const [featured, sale, rent, shortlet] = await Promise.all([
-        fetch(`${API_BASE}/featured`).then((res) => res.json()),
-        fetch(`${API_BASE}/for-sale`).then((res) => res.json()),
-        fetch(`${API_BASE}/for-rent`).then((res) => res.json()),
-        fetch(`${API_BASE}/shortlets`).then((res) => res.json()),
-      ]);
-      if (mounted) {
-        setFeaturedProperties(featured);
-        setForSale(sale);
-        setForRent(rent);
-        setShortlets(shortlet);
+    let mounted = true;
+    async function loadData() {
+      try {
+        const [featured, sale, rent, shortlet] = await Promise.all([
+          fetch(`${API_BASE}/featured`).then((res) => res.json()),
+          fetch(`${API_BASE}/for-sale`).then((res) => res.json()),
+          fetch(`${API_BASE}/for-rent`).then((res) => res.json()),
+          fetch(`${API_BASE}/shortlets`).then((res) => res.json()),
+        ]);
+
+        if (mounted) {
+          console.log("Fetched data:", { featured, sale, rent, shortlet }); // <--- check this
+          setFeaturedProperties(Array.isArray(featured) ? featured : []);
+          setForSale(Array.isArray(sale) ? sale : []);
+          setForRent(Array.isArray(rent) ? rent : []);
+          setShortlets(Array.isArray(shortlet) ? shortlet : []);
+        }
+      } catch (err) {
+        console.error("Failed to fetch listings", err);
       }
-    } catch (err) {
-      console.error("Failed to fetch listings", err);
     }
-  }
-  loadData();
-  return () => {
-    mounted = false;
-  };
-}, []);
+    loadData();
+    return () => {
+      mounted = false;
+    };
+  }, []);
+
 
 
   // Dummy blog post data

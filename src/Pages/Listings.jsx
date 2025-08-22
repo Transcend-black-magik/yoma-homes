@@ -34,6 +34,27 @@ export default function ListingsPage() {
       mounted = false;
     };
   }, []);
+  useEffect(() => {
+  let mounted = true;
+  setLoading(true);
+
+  const formatPrice = (price) => price ? "₦" + Number(price).toLocaleString() : "₦0";
+
+  fetchAllListings()
+    .then((data) => {
+      if (mounted) {
+        const formatted = data.map(item => ({
+          ...item,
+          priceDisplay: formatPrice(item.price),
+        }));
+        setListings(formatted);
+      }
+    })
+    .catch(err => console.error("Failed to fetch listings:", err))
+    .finally(() => mounted && setLoading(false));
+
+  return () => { mounted = false; };
+}, []);
 
   const locations = useMemo(
     () => ["all", ...Array.from(new Set(listings.map((l) => l.location || "Unknown")))],
