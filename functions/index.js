@@ -1,30 +1,26 @@
-// =====================================
-// functions/index.js
-// =====================================
+const functions = require("firebase-functions");
+const express = require("express");
+const cors = require("cors");
+const sanityClient = require("@sanity/client");
+const imageUrlBuilder = require("@sanity/image-url");
 
-import express from "express";
-import cors from "cors";
-import sanityClient from "@sanity/client";
-import imageUrlBuilder from "@sanity/image-url";
-import {onRequest} from "firebase-functions/v2/https";
-
-// Express app
 const app = express();
+
 app.use(cors());
 app.use(express.json());
 
-// Sanity client
+// ✅ Sanity client
 const client = sanityClient({
-  projectId: process.env.SANITY_PROJECT_ID || "ifcs0hka",
-  dataset: process.env.SANITY_DATASET || "production",
+  projectId: "ifcs0hka", // replace with your project ID
+  dataset: "production",
+  apiVersion: "2025-08-23",
   useCdn: true,
-  apiVersion: "2025-01-01",
 });
 
 const builder = imageUrlBuilder(client);
 const urlFor = (source) => builder.image(source);
 
-// Transform listings
+// 🔹 Transform listings to normalized data
 const transformListings = (data) =>
   data.map((d) => ({
     id: d._id,
@@ -42,11 +38,11 @@ const transformListings = (data) =>
       urlFor(d.image).width(1600).auto("format").url() :
       "https://via.placeholder.com/1600x900?text=No+Image",
     gallery: d.gallery ?
-      d.gallery.map((img) => urlFor(img).width(1200).url()) :
+      d.gallery.map((img) => urlFor(img).width(1200).auto("format").url()) :
       [],
   }));
 
-// Generic fetch
+// 🔹 Generic listing fetch
 const fetchListings = async (filter = "") => {
   const query = `*[_type == "property" ${filter}] | order(_createdAt desc){
     _id,
@@ -66,66 +62,53 @@ const fetchListings = async (filter = "") => {
   return transformListings(data);
 };
 
-// Routes
-app.get("/api/listings", async (req, res) => {
+// ====== ROUTES ======
+
+// All Listings
+app.get("/listings", async (req, res) => {
   try {
     const data = await fetchListings();
     res.json(data);
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching all listings:", err);
     res.status(500).json({error: "Failed to fetch listings"});
   }
 });
 
-app.get("/api/listings/home", async (req, res) => {
-  try {
-    const data = await fetchListings();
-    res.json(data.slice(0, 4));
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: "Failed to fetch home listings"});
-  }
-});
-
-app.get("/api/listings/for-sale", async (req, res) => {
-  try {
-    const data = await fetchListings(`&& status match "for sale"`);
-    res.json(data.slice(0, 6));
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: "Failed to fetch for sale listings"});
-  }
-});
-
-app.get("/api/listings/for-rent", async (req, res) => {
-  try {
-    const data = await fetchListings(`&& status match "for rent"`);
-    res.json(data.slice(0, 6));
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: "Failed to fetch for rent listings"});
-  }
-});
-
-app.get("/api/listings/shortlets", async (req, res) => {
-  try {
-    const data = await fetchListings(`&& status match "shortlet"`);
-    res.json(data.slice(0, 6));
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({error: "Failed to fetch shortlets"});
-  }
-});
-
-app.get("/api/listings/featured", async (req, res) => {
+// Featured Listings
+app.get("/listings/featured", async (req, res) => {
   try {
     const data = await fetchListings(`&& featured == true`);
     res.json(data.slice(0, 8));
   } catch (err) {
-    console.error(err);
+    console.error("Error fetching featured listings:", err);
     res.status(500).json({error: "Failed to fetch featured listings"});
   }
 });
 
-// Export Express app as Firebase Function
-export const api = onRequest(app);
+// Listings by Type (for-sale, for-rent, shortlets, etc.)
+app.get("/listings/type/:type", async (req, res) => {
+  try {
+    const type = req.params.type.toLowerCase();
+    const data = await fetchListings(`&& status match "${type}"`);
+    res.json(data);
+  } catch (err) {
+    console.error(`Error fetching ${req.params.type} listings:`, err);
+    res.status(500).json({error:
+      `Failed to fetch ${req.params.type} listings`});
+  }
+});
+
+// Home Listings (latest 4)
+app.get("/listings/home", async (req, res) => {
+  try {
+    const data = await fetchListings();
+    res.json(data.slice(0, 4));
+  } catch (err) {
+    console.error("Error fetching home listings:", err);
+    res.status(500).json({error: "Failed to fetch home listings"});
+  }
+});
+
+// ====== EXPORT ======
+exports.api = functions.https.onRequest(app);

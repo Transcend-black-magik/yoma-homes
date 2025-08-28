@@ -6,7 +6,7 @@ import imageUrlBuilder from "@sanity/image-url";
 const client = createClient({
   projectId: "ifcs0hka", // <-- replace with your Sanity project ID
   dataset: "production",        // <-- or your dataset name
-  useCdn: false, 
+  useCdn: true, 
   token: "skFtxx2xOaMz7zKsQfIsDjCngEUtjfElmgS8woigftLcSVixEzr9S33JLkOsLcTjM9nLgWDJKoEkmqUFWjHp0U8oMux23OfFx7y6xW4kbR8yHtzV6LpRSyWZSCyqnG7aVrfH3Vpk2NpxFgkmFuPFYZD0b6RVueKFEqWu7iIfnVnKjOmL2xKV",                // `false` if you want fresh data
   apiVersion: "2025-08-21",     // use today's date in YYYY-MM-DD format
 });

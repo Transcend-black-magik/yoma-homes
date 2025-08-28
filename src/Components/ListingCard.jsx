@@ -1,17 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function ListingCard({ data, compact = false }) {
-  const [mainImage, setMainImage] = useState(data.imageUrl);
   const navigate = useNavigate();
+  const [mainImage, setMainImage] = useState(data.imageUrl);
+
+  useEffect(() => {
+    // Update main image if data changes
+    setMainImage(data.image || data.imageUrl || "https://via.placeholder.com/1600x900?text=No+Image");
+  }, [data]);
 
   const handleViewDetails = () => {
-    navigate(`/listing/${data.id}`); // ✅ details route
+    navigate(`/listing/${data.id}`);
   };
 
-  const handleBookInspection = () => {
-    navigate(`/inspection/${data.id}`); // ✅ inspection route
-  };
+  // const handleBookInspection = () => {
+  //   navigate(`/inspection/${data.id}`);
+  // };
 
   return (
     <div className={`listing-card ${compact ? "compact" : ""}`}>
@@ -38,12 +43,13 @@ export default function ListingCard({ data, compact = false }) {
       {/* Gallery thumbnails */}
       {!compact && data.gallery && data.gallery.length > 0 && (
         <div className="gallery-thumbnails">
-          {data.gallery.map((img, idx) => (
+          {[data.image, ...data.gallery].map((img, idx) => (
             <img
               key={idx}
-              src={img}
+              src={img || "https://via.placeholder.com/1600x900?text=No+Image"}
               alt={`${data.title} gallery ${idx + 1}`}
               onClick={() => setMainImage(img)}
+              style={{ cursor: "pointer" }}
             />
           ))}
         </div>
@@ -54,7 +60,7 @@ export default function ListingCard({ data, compact = false }) {
         <h3 className="title">{data.title}</h3>
         <p className="desc">{data.description}</p>
         <p>
-          <strong>{data.priceDisplay}</strong> — {data.bedrooms} Beds / {data.bathrooms} Baths
+          <strong>{data.priceDisplay || `₦${(data.price || 0).toLocaleString()}`}</strong> — {data.bedrooms} Beds / {data.bathrooms} Baths
         </p>
         <p className="meta">{data.location}</p>
         <p className="meta">
@@ -63,12 +69,12 @@ export default function ListingCard({ data, compact = false }) {
 
         {/* Action buttons */}
         <div className="actions">
-          <button className="btn" onClick={handleViewDetails}>
+          <button className="btn primary" onClick={handleViewDetails}>
             View Details
           </button>
-          <button className="btn primary" onClick={handleBookInspection}>
+          {/* <button className="btn primary" onClick={handleBookInspection}>
             Book Inspection
-          </button>
+          </button> */}
         </div>
       </div>
     </div>
