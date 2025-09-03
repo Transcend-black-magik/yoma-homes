@@ -163,7 +163,7 @@ const Home = () => {
         <div className="hero-overlay" />
         <motion.div className="hero-container" {...heroMotion}>
           <motion.h1 initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 1 }}>
-            Discover Your Ideal Home with <span className="gold">YomaHomes</span>
+            Let us guide you to the keys of your <span className="gold">Dream Home</span>
           </motion.h1>
           <motion.p initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.2 }}>
             Buy, Rent or Shortlet Premium Properties Anywhere in Nigeria.
@@ -343,7 +343,7 @@ const Home = () => {
 
       {/* For Rent */}
       <section className="featured-section" aria-label="Katampe Extension Luxury Listing">
-        <h2 className="featured-title">Katampe Extension Luxury Listing</h2>
+        <h2 className="featured-title">Wuye Luxury Listing</h2>
         {forRent.length > 0 ? renderGrid(forRent) : <p>No rental properties available.</p>}
         {/* <button className="view-all-btn" onClick={() => navigate("/listings?status=rent")}>View All For Rent</button> */}
       </section>

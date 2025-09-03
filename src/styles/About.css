@@ -4,7 +4,9 @@
   background: #fff;
 }
 
-/* Banner Section */
+/* ========================
+   Banner Section
+   ======================== */
 .banner-section {
   position: relative;
   height: 280px;
@@ -38,10 +40,61 @@
   letter-spacing: 1px;
 }
 
-/* Meet the Team Section */
+/* ========================
+   About Content Section
+   ======================== */
+.about-content {
+  max-width: 1000px;
+  margin: 60px auto;
+  padding: 0 20px;
+  line-height: 1.8;
+}
+
+.about-wrapper h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #003366;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.about-wrapper h3 {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #003366;
+  margin: 30px 0 15px;
+}
+
+.about-wrapper p {
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 18px;
+  text-align: justify;
+}
+
+.about-wrapper strong {
+  color: #003366;
+  font-weight: 600;
+}
+
+/* Scroll reveal animation */
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================
+   Meet the Team Section
+   ======================== */
 .meet-team-section {
-  max-width: 1100px;
-  margin: 50px auto 80px;
+  max-width: 1200px;
+  margin: 70px auto 100px;
   padding: 0 20px;
   text-align: center;
 }
@@ -50,17 +103,28 @@
   font-size: 2.6rem;
   font-weight: 700;
   color: #003366;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
+  position: relative;
 }
 
-/* Slider wrapper for arrows and overflow */
+.meet-team-section h2::after {
+  content: '';
+  width: 80px;
+  height: 3px;
+  background: #003366;
+  display: block;
+  margin: 12px auto 0;
+  border-radius: 2px;
+}
+
+/* Slider wrapper */
 .slider-wrapper {
   position: relative;
   display: flex;
   align-items: center;
 }
 
-/* The slider container */
+/* Team slider container */
 .team-slider {
   display: flex;
   overflow-x: auto;
@@ -81,23 +145,22 @@
 .team-card {
   min-width: 250px;
   flex-shrink: 0;
-  background: #f9f9f9;
-  border-radius: 12px;
-  box-shadow: 0 10px 20px rgb(0 0 0 / 0.1);
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   scroll-snap-align: start;
-  cursor: default;
-  transition: transform 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .team-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
 }
 
 .image-wrapper {
   height: 260px;
   overflow: hidden;
-  border-radius: 12px 12px 0 0;
 }
 
 .image-wrapper img {
@@ -108,7 +171,7 @@
 }
 
 .team-card:hover .image-wrapper img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
 .team-card h3 {
@@ -116,15 +179,15 @@
   font-weight: 600;
   color: #003366;
   font-size: 1.15rem;
-  letter-spacing: 0.8px;
+  letter-spacing: 0.6px;
 }
 
 .team-card p {
   margin-bottom: 18px;
   font-weight: 400;
   font-size: 0.95rem;
-  color: #555;
-  letter-spacing: 0.6px;
+  color: #666;
+  letter-spacing: 0.5px;
 }
 
 /* Arrows */
@@ -132,17 +195,18 @@
   background-color: #003366;
   border: none;
   color: white;
-  font-size: 2.2rem;
+  font-size: 2rem;
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 50%;
   user-select: none;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   z-index: 10;
 }
 
 .arrow:hover {
   background-color: #002244;
+  transform: scale(1.1);
 }
 
 .left-arrow {
@@ -153,7 +217,19 @@
   margin-left: 10px;
 }
 
-/* Responsive */
+/* ========================
+   Responsive
+   ======================== */
+@media (max-width: 900px) {
+  .team-slider {
+    gap: 20px;
+  }
+
+  .team-card {
+    min-width: 220px;
+  }
+}
+
 @media (max-width: 600px) {
   .banner-section {
     height: 180px;
@@ -167,12 +243,24 @@
     font-size: 1rem;
   }
 
+  .about-wrapper h2 {
+    font-size: 1.8rem;
+  }
+
+  .about-wrapper h3 {
+    font-size: 1.4rem;
+  }
+
+  .about-wrapper p {
+    font-size: 0.95rem;
+  }
+
   .meet-team-section h2 {
     font-size: 2rem;
     margin-bottom: 30px;
   }
 
-  /* Hide arrows on small devices for simpler UX */
+  /* Hide arrows on small devices */
   .arrow {
     display: none;
   }
