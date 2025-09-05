@@ -20,8 +20,14 @@ const fadeUp = {
 const Contact = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
-    // In production, replace with actual form submit logic (e.g. API call)
     alert("Thank you for reaching out! We will get back to you shortly.");
+  };
+
+  const handleBookInspection = () => {
+    window.open(
+      "https://forms.zohopublic.com/YomaHomes/form/CLIENTREQUESTFORM/formperma/kldSD5KLZE0G2SzS8WQWv4GzPizIMD0KPEqS2LP_Evc",
+      "_blank"
+    );
   };
 
   return (
@@ -44,7 +50,8 @@ const Contact = () => {
       {/* Info + Form Section */}
       <motion.section className="info-form-section" variants={fadeUp} custom={1}>
         <h2 className="section-subtitle info-text">
-            For more information about our services, get in touch with our expert consultants. We're always eager to hear from you!
+          For more information about our services, get in touch with our expert
+          consultants. We're always eager to hear from you!
         </h2>
 
         <motion.form
@@ -109,6 +116,17 @@ const Contact = () => {
             Send Message
           </motion.button>
         </motion.form>
+
+        {/* Book Inspection Button */}
+        <motion.button
+          className="book-inspection-btn"
+          onClick={handleBookInspection}
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          aria-label="Book an Inspection"
+        >
+          Book Inspection
+        </motion.button>
       </motion.section>
 
       {/* Visit Office Section */}

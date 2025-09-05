@@ -73,7 +73,7 @@ const ListingDetails = () => {
     if (status === "for sale") {
       return {
         label: "Get More Inquiries",
-        link: "https://forms.zohopublic.com/YomaHomes/form/CLIENTREQUESTFORM/formperma/kldSD5KLZE0G2SzS8WQWv4GzPizIMD0KPEqS2LP_Evc",
+        link: "https://forms.zohopublic.com/YomaHomes/form/LETTEROFINTENTTOBUY/formperma/HM1ONVKUerZeEZXSQeY12eiP-k9q9Ep23YBGRRuhnWQ",
       };
     } else if (status === "for rent") {
       return {
