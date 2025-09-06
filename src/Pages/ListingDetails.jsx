@@ -72,7 +72,7 @@ const ListingDetails = () => {
     const status = listing.status?.toLowerCase();
     if (status === "for sale") {
       return {
-        label: "Get More Inquiries",
+        label: "Book Inspection",
         link: "https://forms.zohopublic.com/YomaHomes/form/LETTEROFINTENTTOBUY/formperma/HM1ONVKUerZeEZXSQeY12eiP-k9q9Ep23YBGRRuhnWQ",
       };
     } else if (status === "for rent") {
@@ -80,6 +80,10 @@ const ListingDetails = () => {
         label: "Book Inspection",
         link: "https://forms.zohopublic.com/YomaHomes/form/AppointmentBookingForm/formperma/F0hOs2DzNFdDfoMWb8qCVW4PtvzZ_BSTys3pxAOXeSI",
       };
+    } else {
+      return { 
+        label: "Book Your Stay", 
+        link: "https://forms.yomahomes.com.ng/YomaHomes/form/RoomReservationForm/formperma/2UF3KEP774Y1WA3JBiVwfFBdbn9uE3Ge8Zagtbd0fgU" };
     }
     return { label: "Contact Us", link: "/contact" };
   };

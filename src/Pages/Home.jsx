@@ -162,12 +162,14 @@ const Home = () => {
       <motion.section className="hero-section" style={{ backgroundImage: `url(${HeroBg})` }} initial={shouldReduceMotion ? {} : { opacity: 0 }} animate={shouldReduceMotion ? {} : { opacity: 1 }} exit={shouldReduceMotion ? {} : { opacity: 0, y: -20 }} transition={{ duration: 0.6 }}>
         <div className="hero-overlay" />
         <motion.div className="hero-container" {...heroMotion}>
-          <motion.h1 initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 1 }}>
-            Let us guide you to the keys of your <span className="gold">Dream Home</span>
-          </motion.h1>
-          <motion.p initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.2 }}>
-            Buy, Rent or Shortlet Premium Properties Anywhere in Nigeria.
+          <motion.p initial={shouldReduceMotion ? {} : { opacity: 0, x: -30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 1 }}>
+            Let Us <span className="gold">Give</span> You The
           </motion.p>
+          <motion.h1 initial={shouldReduceMotion ? {} : { opacity: 0, x: 30 }} animate={shouldReduceMotion ? {} : { opacity: 1, x: 0 }} transition={{ duration: 1, delay: 0.2 }}>
+            Keys To Your <span className="gold">Dream Home</span>
+          </motion.h1>
+          <br/>
+          <br/>
 
           {/* Listing Type Toggle */}
           <motion.div
@@ -209,6 +211,7 @@ const Home = () => {
                   onChange={handleChange}
                 >
                   <option value="">Select Property Type</option>
+                  <option value="Penthouse">Penthouse</option>
                   <option value="bungalow">Bungalow</option>
                   <option value="duplex">Duplex</option>
                   <option value="flat">Flat</option>
@@ -272,14 +275,29 @@ const Home = () => {
                   transition={{ duration: 0.35 }}
                 >
                   <div className="search-field">
-                    <label htmlFor="city">City</label>
+                    <label htmlFor="city">Location</label>
                     <select id="city" name="city" value={formData.city} onChange={handleChange}>
-                      <option value="">Select City</option>
-                      <option value="lagos">Lagos</option>
-                      <option value="abuja">Abuja</option>
-                      <option value="portharcourt">Port Harcourt</option>
-                      <option value="ibadan">Ibadan</option>
-                      <option value="enugu">Enugu</option>
+                      <option value="">Select Location</option>
+                      <option value="Utako">Utako</option>
+                      <option value="Jabi">Jabi</option>
+                      <option value="Katampe">Katampe</option>
+                      <option value="Katampe Ext.">Katampe Ext.</option>
+                      <option value="Gwarimpa">Gwarimpa</option>
+                      <option value="Kubwa">Kubwa</option>
+                      <option value="Dawaki">Dawaki</option>
+                      <option value="Guzape">Guzape</option>
+                      <option value="Maitama">Maitama</option>
+                      <option value="Maitama 2">Maitama 2 (Mpape)</option>
+                      <option value="Lifecamp">Lifecamp</option>
+                      <option value="Jahi">Jahi</option>
+                      <option value="Wuse 2">Wuse 2</option>
+                      <option value="Wuse Zones">Wuse Zones</option>
+                      <option value="Lokogoma">Lokogoma</option>
+                      <option value="Kaura district">Kaura district</option>
+                      <option value="Galadimawa">Galadimawa</option>
+                      <option value="Duboyi">Duboyi</option>
+                      <option value="Apo">Apo</option>
+                      <option value="Dakwo">Dakwo</option>
                     </select>
                   </div>
 
@@ -336,14 +354,14 @@ const Home = () => {
 
       {/* For Sale */}
       <section className="featured-section" aria-label="Asokoro Luxury Listing">
-        <h2 className="featured-title">Asokoro Luxury Listing</h2>
+        <h2 className="featured-title">Luxury Listings For Sale</h2>
         {forSale.length > 0 ? renderGrid(forSale) : <p>No properties for sale available.</p>}
         {/* <button className="view-all-btn" onClick={() => navigate("/listings?status=sale")}>View All For Sale</button> */}
       </section>
 
       {/* For Rent */}
       <section className="featured-section" aria-label="Katampe Extension Luxury Listing">
-        <h2 className="featured-title">Wuye Luxury Listing</h2>
+        <h2 className="featured-title">Luxury Listings For Rent</h2>
         {forRent.length > 0 ? renderGrid(forRent) : <p>No rental properties available.</p>}
         {/* <button className="view-all-btn" onClick={() => navigate("/listings?status=rent")}>View All For Rent</button> */}
       </section>

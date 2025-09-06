@@ -37,9 +37,9 @@ const Footer = () => {
             <h2>YomaHomes</h2>
           </div>
           <div className="footer-contact-info">
-            <p>123 Yoma Street, Lagos, Nigeria</p>
-            <p>+234 800 123 4567</p>
-            <p>support@yomahomes.com</p>
+            <p>First Floor, Murjanatu house, No 1 Zambezi crescent, Maitama Abuja</p>
+            <p>+234 901 922 2209, +234 905 422 0541</p>
+            <p>info@yomahomes.com.ng</p>
           </div>
         </div>
 

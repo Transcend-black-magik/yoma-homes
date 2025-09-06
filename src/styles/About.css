@@ -90,11 +90,11 @@
 }
 
 /* ========================
-   Meet the Team Section
+   Meet the CEO Section
    ======================== */
 .meet-team-section {
-  max-width: 1200px;
-  margin: 70px auto 100px;
+  max-width: 1000px;
+  margin: 80px auto;
   padding: 0 20px;
   text-align: center;
 }
@@ -103,13 +103,13 @@
   font-size: 2.6rem;
   font-weight: 700;
   color: #003366;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   position: relative;
 }
 
 .meet-team-section h2::after {
   content: '';
-  width: 80px;
+  width: 70px;
   height: 3px;
   background: #003366;
   display: block;
@@ -117,116 +117,77 @@
   border-radius: 2px;
 }
 
-/* Slider wrapper */
-.slider-wrapper {
-  position: relative;
+/* CEO Card wrapper */
+.ceo-card {
   display: flex;
+  flex-direction: column;
   align-items: center;
-}
-
-/* Team slider container */
-.team-slider {
-  display: flex;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  gap: 30px;
-  padding-bottom: 10px;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none; /* Firefox */
-}
-
-/* Hide scrollbar */
-.team-slider::-webkit-scrollbar {
-  display: none;
-}
-
-/* Each team card */
-.team-card {
-  min-width: 250px;
-  flex-shrink: 0;
   background: #fff;
-  border-radius: 14px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  max-width: 420px;
+  margin: 0 auto;
   overflow: hidden;
-  scroll-snap-align: start;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+.ceo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.15);
 }
 
-.image-wrapper {
-  height: 260px;
+.ceo-image-wrapper {
+  width: 100%;
+  height: 320px;
   overflow: hidden;
 }
 
-.image-wrapper img {
+.ceo-image-wrapper img {
   width: 100%;
-  height: 260px;
+  height: 100%;
   object-fit: cover;
   transition: transform 0.4s ease;
 }
 
-.team-card:hover .image-wrapper img {
-  transform: scale(1.08);
+.ceo-card:hover .ceo-image-wrapper img {
+  transform: scale(1.05);
 }
 
-.team-card h3 {
-  margin: 18px 0 6px;
+.ceo-card h3 {
+  margin: 20px 0 8px;
+  font-size: 1.4rem;
   font-weight: 600;
   color: #003366;
-  font-size: 1.15rem;
-  letter-spacing: 0.6px;
 }
 
-.team-card p {
-  margin-bottom: 18px;
+.ceo-card p {
+  margin-bottom: 20px;
+  font-size: 1rem;
   font-weight: 400;
-  font-size: 0.95rem;
-  color: #666;
-  letter-spacing: 0.5px;
+  color: #555;
 }
 
-/* Arrows */
-.arrow {
-  background-color: #003366;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  padding: 8px 12px;
-  border-radius: 50%;
-  user-select: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  z-index: 10;
-}
-
-.arrow:hover {
-  background-color: #002244;
-  transform: scale(1.1);
-}
-
-.left-arrow {
-  margin-right: 10px;
-}
-
-.right-arrow {
-  margin-left: 10px;
-}
-
-/* ========================
-   Responsive
-   ======================== */
-@media (max-width: 900px) {
-  .team-slider {
-    gap: 20px;
+/* Responsive */
+@media (max-width: 600px) {
+  .meet-team-section h2 {
+    font-size: 2rem;
+    margin-bottom: 28px;
   }
 
-  .team-card {
-    min-width: 220px;
+  .ceo-card {
+    max-width: 90%;
+  }
+
+  .ceo-image-wrapper {
+    height: 240px;
+  }
+
+  .ceo-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .ceo-card p {
+    font-size: 0.95rem;
   }
 }
 

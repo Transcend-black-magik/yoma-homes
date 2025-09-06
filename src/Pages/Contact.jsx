@@ -125,7 +125,7 @@ const Contact = () => {
           whileTap={{ scale: 0.95 }}
           aria-label="Book an Inspection"
         >
-          Book Inspection
+          Client Request
         </motion.button>
       </motion.section>
 
@@ -138,7 +138,7 @@ const Contact = () => {
         <h2 className="section-subtitle">Visit our office</h2>
         <span className="office-address" aria-label="Office address">
           <FaMapMarkerAlt color="#d4af37" aria-hidden="true" />
-          123 Luxury Estate Avenue, Abuja, Nigeria
+          First Floor, Murjanatu house, No 1 Zambezi crescent, Maitama Abuja
         </span>
 
         <div className="map-container" aria-label="Office location on map">
@@ -162,8 +162,8 @@ const Contact = () => {
             </p>
             <p>
               <FaPhoneAlt color="#d4af37" aria-hidden="true" />{" "}
-              <a href="tel:+2348012345678" tabIndex={0}>
-                +234 801 234 5678
+              <a href="tel:+234 901 922 2209, +234 905 422 0541" tabIndex={0}>
+                +234 901 922 2209, +234 905 422 0541
               </a>
             </p>
           </div>
@@ -175,8 +175,7 @@ const Contact = () => {
               6:00 PM
             </p>
             <p>
-              <FaClock color="#d4af37" aria-hidden="true" /> Sat: 10:00 AM - 3:00
-              PM
+              <FaClock color="#d4af37" aria-hidden="true" /> Sat: CLosed
             </p>
             <p>
               <FaClock color="#d4af37" aria-hidden="true" /> Sun: Closed
