@@ -72,7 +72,7 @@ const TeamPage = () => {
           <div className="ceo-image-wrapper">
             <img src={CEOImage} alt="Sandra - CEO of YomaHomes" />
           </div>
-          <h3>Sandra</h3>
+          <h3>Diru Chioma Vanessa</h3>
           <p>CEO</p>
         </div>
       </section>
