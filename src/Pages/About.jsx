@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import '../styles/About.css';
-import CEOImage from '../Assets/house1.webp';
+import CEOImage from '../Assets/Pic.JPG';
 const TeamPage = () => {
   const sliderRef = useRef(null);
   const scrollAmount = 280;
@@ -73,7 +73,7 @@ const TeamPage = () => {
             <img src={CEOImage} alt="Sandra - CEO of YomaHomes" />
           </div>
           <h3>Sandra</h3>
-          <p>CEO of YomaHomes</p>
+          <p>CEO</p>
         </div>
       </section>
 

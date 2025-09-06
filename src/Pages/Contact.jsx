@@ -47,14 +47,14 @@ const Contact = () => {
         Contact
       </motion.h1>
 
-      {/* Info + Form Section */}
+      {/* Information & Form Section */}
       <motion.section className="info-form-section" variants={fadeUp} custom={1}>
         <h2 className="section-subtitle info-text">
           For more information about our services, get in touch with our expert
           consultants. We're always eager to hear from you!
         </h2>
 
-        <motion.form
+        {/* <motion.form
           onSubmit={handleSubmit}
           noValidate
           className="contact-form"
@@ -115,7 +115,7 @@ const Contact = () => {
           >
             Send Message
           </motion.button>
-        </motion.form>
+        </motion.form> */}
 
         {/* Book Inspection Button */}
         <motion.button
@@ -175,7 +175,7 @@ const Contact = () => {
               6:00 PM
             </p>
             <p>
-              <FaClock color="#d4af37" aria-hidden="true" /> Sat: CLosed
+              <FaClock color="#d4af37" aria-hidden="true" /> Sat: Closed
             </p>
             <p>
               <FaClock color="#d4af37" aria-hidden="true" /> Sun: Closed

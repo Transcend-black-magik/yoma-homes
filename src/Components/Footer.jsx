@@ -34,7 +34,7 @@ const Footer = () => {
         <div className="footer-brand">
           <div className="footer-logo-row">
             <img src={LogoImage} alt="Logo" className="footer-logo" />
-            <h2>YomaHomes</h2>
+            <h2>Yoma Homes Limited</h2>
           </div>
           <div className="footer-contact-info">
             <p>First Floor, Murjanatu house, No 1 Zambezi crescent, Maitama Abuja</p>
